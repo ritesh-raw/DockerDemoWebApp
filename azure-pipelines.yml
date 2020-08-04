@@ -11,10 +11,10 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'f8897602-20b5-46e3-be06-a412247d5bf7'
-  imageRepository: 'riteshrawdockerdemowebapp'
+  imageRepository: 'dockerdemowebapp'
   containerRegistry: 'dockerdemomvcregistry.azurecr.io'
   dockerfilePath: 'Dockerfile'
-  tag: '$(Build.BuildId)'
+  --tag: '$(Build.BuildId)'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -35,8 +35,7 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        
     - task: CopyFiles@2
       inputs:
         targetFolder: $(Build.ArtifactStagingDirectory)
